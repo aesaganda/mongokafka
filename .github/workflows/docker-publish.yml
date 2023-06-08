@@ -26,12 +26,48 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image - mongo
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
+          file: mongo.Dockerfile
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/mongo:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/mongo:latest
+          platforms: linux/amd64,linux/arm64
+
+        
+
+      - name: Build and push Docker image - connect
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: connect.Dockerfile
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/connect:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/connect:latest
+          platforms: linux/amd64,linux/arm64
+
+      - name: Build and push Docker image - consumer
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: consumer.Dockerfile
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/consumer:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/consumer:latest
+          platforms: linux/amd64,linux/arm64
+
+      - name: Build and push Docker image - producer
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: producer.Dockerfile
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/producer:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/producer:latest
           platforms: linux/amd64,linux/arm64
