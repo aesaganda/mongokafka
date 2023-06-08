@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f prebuilt-docker-compose.yml convert -c
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongo1
+  name: mongo1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mongo1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f prebuilt-docker-compose.yml convert -c
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/mongokafka-mongonet: "true"
+        io.kompose.service: mongo1
+    spec:
+      containers:
+        - args:
+            - --replSet
+            - rs0
+            - --oplogSize
+            - "128"
+          image: mongodb-kafka-base-mongod:1.0
+          name: mongo1
+          ports:
+            - containerPort: 27017
+          resources: {}
+      restartPolicy: Always
+status: {}

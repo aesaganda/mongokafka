@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose -f prebuilt-docker-compose.yml convert -c
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.network/mongokafka-mongonet: "true"
+    io.kompose.service: mongo1-setup
+  name: mongo1-setup
+spec:
+  containers:
+    - command:
+        - bash
+        - -c
+        - sleep 10 && mongosh --host mongo1:27017 config-replica.js && sleep 10
+      image: mongodb-kafka-base-setup-mongod:1.0
+      name: mongo1-setup
+      resources: {}
+  restartPolicy: Never
+status: {}
