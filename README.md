@@ -1,52 +1,39 @@
-# MongoDB Connector for Apache Kafka Tutorials
+# My App
 
-The official MongoDB Connector for Apache® Kafka® is developed and supported by MongoDB engineers and verified by Confluent. The Connector is designed to be used with Kafka Connect and enables MongoDB to be a datasource for Apache Kafka from both a source and sink perspective.
+My App is a Python application that uses Kafka and MongoDB to process data.
 
-![](https://webassets.mongodb.com/_com_assets/cms/mongodbkafka-hblts5yy33.png)
+## Building and Running the Containers
 
-These tutorials are focused on teaching you the essential features and functionality of the connector enabling you to get up and running quickly.
+To build and run the containers for My App, follow these steps:
 
-# Prerequisites
+1. Clone the repository to your local machine.
+2. Navigate to the root directory of the repository.
+3. Run the following command to build the containers:
 
-The MongoDB Kafka tutorial environment requires the following installed on your client:
 
-- [Docker](https://docs.docker.com/get-docker/)
-- [Git]()
+` docker-compose build `
 
-The docker compose in this repository will create an environment that consists of the following:
+4. Run the following command to start the containers:
 
-- Apache Kafka
-- Zookeeper
-- Apache Kafka Connect
-- MongoDB Connector for Apache Kafka (installed in Kafka Connect)
-- MongoDB single node replica set
+`docker-compose up`
 
-# Starting the Docker environment
 
-To start the baseline tutorial environment execute the run the following command:
+This will start the Kafka and MongoDB containers, as well as the `consumer` and `producer` containers for My App.
 
-```
-docker-compose -p mongo-kafka up -d --force-recreate
-```
+5. Once the containers are running, you can access the application at `http://localhost:5000`.
 
-To start an interactive shell, run the following command:
+The `producer` container will generate data and send it to the Kafka topic. The `consumer` container will consume the data from the Kafka topic and store it in the MongoDB database.
 
-```
-docker exec -it mongo1 /bin/bash
-```
+You can view the data in the MongoDB database by connecting to the `mongo1` container and running the `mongo` command-line tool.
 
-## Shutting down the Tutorial environment
+`docker exec -it mongo1 mongo`
 
-To stop and remove the Docker environment from your
-machine, run the following command:
+This will open the MongoDB shell, where you can run commands to view the data.
 
-```
-docker-compose -p mongo-kafka down --rmi 'all'
-```
+## License
 
-## References
+My App is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-- [MongoDB Kafka Connector](https://docs.mongodb.com/kafka-connector/current/) online documentation.
+### In order to scale the consumer you can use the following command:
 
-- [Connectors to Kafka](https://docs.confluent.io/home/connect/overview.html)
-- MongoDB Connector for Apache Kafka Tutorials (Link TBD)
+`docker-compose up --scale consumer=3`
