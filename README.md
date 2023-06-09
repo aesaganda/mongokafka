@@ -1,6 +1,6 @@
-# My App
+# MongoDB and Kafka with Docker Compose
 
-My App is a Python application that uses Kafka and MongoDB to process data.
+This is a Python application that uses Kafka and MongoDB to process data.
 
 ## Building and Running the Containers
 
