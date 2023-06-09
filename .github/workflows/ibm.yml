@@ -52,7 +52,7 @@ jobs:
       # Build the Docker image
       - name: Build with Docker - connect
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
+          docker  build -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
           --build-arg GITHUB_SHA="${{ github.sha }}" \
           --build-arg GITHUB_REF="${{ github.ref }}" \
           -f connect.Dockerfile .
@@ -65,7 +65,7 @@ jobs:
       # Build the Docker image
       - name: Build with Docker - mongo
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
+          docker  build -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
           --build-arg GITHUB_SHA="${{ github.sha }}" \
           --build-arg GITHUB_REF="${{ github.ref }}" \
           -f mongo.Dockerfile .
@@ -78,7 +78,7 @@ jobs:
       # Build the Docker image
       - name: Build with Docker - consumer
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
+          docker  build -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
           --build-arg GITHUB_SHA="${{ github.sha }}" \
           --build-arg GITHUB_REF="${{ github.ref }}" \
           -f consumer.Dockerfile .
@@ -91,7 +91,7 @@ jobs:
       # Build the Docker image
       - name: Build with Docker - producer
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
+          docker  build -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.REGISTRY_HOSTNAME }}/${{ env.ICR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest \
           --build-arg GITHUB_SHA="${{ github.sha }}" \
           --build-arg GITHUB_REF="${{ github.ref }}" \
           -f producer.Dockerfile .
