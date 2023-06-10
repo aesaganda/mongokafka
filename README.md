@@ -32,8 +32,20 @@ This will open the MongoDB shell, where you can run commands to view the data.
 
 ## License
 
-My App is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+This app is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
 ### In order to scale the consumer you can use the following command:
 
 `docker-compose up --scale consumer=3`
+
+![alt text](img/app-before.png "Kafka before changes")
+
+*Kafka before changes*
+
+![alt text](img/app-after.png "Kafka after changes")
+
+*Kafka after changes*
+
+![alt text](img/kubernetes.png "Kubernetes deployment")
+
+*Kubernetes deployment*
